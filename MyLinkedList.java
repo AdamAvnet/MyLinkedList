@@ -40,12 +40,12 @@ public class MyLinkedList{
 
 	public boolean add(String value){
 		Node newnode = new Node(value);
-		tail = newnode;
 		if(size() > 0){
-			nthNode(size - 1).setNext(newnode);
 			newnode.setPrev(nthNode(size - 1));
+			nthNode(size - 1).setNext(newnode);
 		}else
 			head = newnode;
+		tail = newnode;
 		size += 1;
 		return true;
 	}
@@ -56,13 +56,13 @@ public class MyLinkedList{
 		if(index == size())
 			return add(value);
 		Node newnode = new Node(value);
-		newnode.setNext(nthNode(index));
 		nthNode(index).setPrev(newnode);
+		newnode.setNext(nthNode(index));
 		if(index == 0)
 			head = newnode;
 		else{
-			nthNode(index - 1).setNext(newnode);
 			newnode.setPrev(nthNode(index - 1));
+			nthNode(index - 1).setNext(newnode);
 		}
 		size += 1;
 		return true;
