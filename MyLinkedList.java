@@ -12,15 +12,28 @@ public class MyLinkedList{
 	}
 
 	private Node nthNode(int index){
-		Node current = head;
-		int i = 0;
-		if(index < 0)
-			i = size() + 100;
-		while(i < size()){
-			if(i == index)
-				return current;
-			i += 1;
-			current = current.getNext();
+		if(index <= size() / 2){
+			Node current = head;
+			int i = 0;
+			if(index < 0)
+				i = size() + 100;
+			while(i < size()){
+				if(i == index)
+					return current;
+				i += 1;
+				current = current.getNext();
+			}
+		}else{
+			Node current = tail;
+			int i = size() - 1;
+			if(index > size())
+				i = -1;
+			while(i >= 0){
+				if(i == index)
+					return current;
+				i -= 1;
+				current = current.getPrev();
+			}
 		}
 		throw new IndexOutOfBoundsException("The index is out of bounds");
 	}
@@ -28,9 +41,10 @@ public class MyLinkedList{
 	public boolean add(String value){
 		Node newnode = new Node(value);
 		tail = newnode;
-		if(size() > 0)
+		if(size() > 0){
 			nthNode(size - 1).setNext(newnode);
-		else
+			newnode.setPrev(nthNode(size - 1));
+		}else
 			head = newnode;
 		size += 1;
 		return true;
@@ -43,10 +57,13 @@ public class MyLinkedList{
 			return add(value);
 		Node newnode = new Node(value);
 		newnode.setNext(nthNode(index));
+		nthNode(index).setPrev(newnode);
 		if(index == 0)
 			head = newnode;
-		else
+		else{
 			nthNode(index - 1).setNext(newnode);
+			newnode.setPrev(nthNode(index - 1));
+		}
 		size += 1;
 		return true;
 	}
