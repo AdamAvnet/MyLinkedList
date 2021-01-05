@@ -14,7 +14,7 @@ public class MyLinkedList{
 	private Node nthNode(int index){
 		Node current = head;
 		int i = 0;
-		while(current.getNext() != null){
+		while(i < size()){
 			if(i == index)
 				return current;
 			i += 1;
@@ -45,5 +45,22 @@ public class MyLinkedList{
 			nthNode(index - 1).setNext(newnode);
 		return true;
 	}
-		
+	
+	public String get(int index){
+		return nthNode(index).getData();
+	}
+	
+	public String set(int index, String value){
+		String oldvalue = nthNode(index).getData();
+		nthNode(index).setData(value);
+		return oldvalue;
+	}
+	
+	public String toString(){
+		String str = "";
+		for(int i = 0; i < size(); i++){
+			str = str + nthNode(i).getData() + ", ";
+		}
+		return str;
+	}
 }
