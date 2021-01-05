@@ -14,13 +14,15 @@ public class MyLinkedList{
 	private Node nthNode(int index){
 		Node current = head;
 		int i = 0;
+		if(index < 0)
+			i = size() + 100;
 		while(i < size()){
 			if(i == index)
 				return current;
 			i += 1;
 			current = current.getNext();
 		}
-		throw new IndexOutOfBoundsException();
+		throw new IndexOutOfBoundsException("The index is out of bounds");
 	}
 
 	public boolean add(String value){
@@ -35,7 +37,9 @@ public class MyLinkedList{
 	}
 
 	public boolean add(int index, String value){
-		if(index >= size())
+		if(index > size() || index < 0)
+			throw new IndexOutOfBoundsException("The index is out of bounds");
+		if(index == size())
 			return add(value);
 		Node newnode = new Node(value);
 		newnode.setNext(nthNode(index));
@@ -43,6 +47,7 @@ public class MyLinkedList{
 			head = newnode;
 		else
 			nthNode(index - 1).setNext(newnode);
+		size += 1;
 		return true;
 	}
 	
