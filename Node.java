@@ -11,7 +11,7 @@ public class Node{
 		return data;
 	}
 
-	private Node getNext(){
+	public Node getNext(){
 		return next;
 	}
 
@@ -19,7 +19,7 @@ public class Node{
 		data = newval;
 	}
 
-	private void setNext(Node newnext){
+	public void setNext(Node newnext){
 		next = newnext;
 	}
 
