@@ -52,26 +52,27 @@ public class MyLinkedList{
 		return true;
 	}
 
-	public boolean add(int index, String value){
+	public void add(int index, String value){
 		if(index > size() || index < 0)
 			throw new IndexOutOfBoundsException("The index is out of bounds");
 		if(index == size())
-			return add(value);
-		Node newnode = new Node(value);
-		Node nod = nthNode(index);
-		Node nody = nthNode(0);
-		if(index > 0)
-			nody = nthNode(index - 1);
-		nod.setPrev(newnode);
-		newnode.setNext(nod);
-		if(index == 0)
-			head = newnode;
+			add(value);
 		else{
-			newnode.setPrev(nody);
-			nody.setNext(newnode);
+			Node newnode = new Node(value);
+			Node nod = nthNode(index);
+			Node nody = nthNode(0);
+			if(index > 0)
+				nody = nthNode(index - 1);
+			nod.setPrev(newnode);
+			newnode.setNext(nod);
+			if(index == 0)
+				head = newnode;
+			else{
+				newnode.setPrev(nody);
+				nody.setNext(newnode);
+			}
+			size += 1;
 		}
-		size += 1;
-		return true;
 	}
 	
 	public String get(int index){
