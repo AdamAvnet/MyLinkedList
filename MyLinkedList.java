@@ -12,7 +12,7 @@ public class MyLinkedList{
 	}
 
 	private Node nthNode(int index){
-		if(index <= size() / 2){
+		if(index < size() / 2){
 			Node current = head;
 			int i = 0;
 			if(index < 0)
@@ -59,12 +59,14 @@ public class MyLinkedList{
 			return add(value);
 		Node newnode = new Node(value);
 		Node nod = nthNode(index);
+		Node nody = nthNode(0);
+		if(index > 0)
+			nody = nthNode(index - 1);
 		nod.setPrev(newnode);
 		newnode.setNext(nod);
 		if(index == 0)
 			head = newnode;
 		else{
-			Node nody = nthNode(index - 1);
 			newnode.setPrev(nody);
 			nody.setNext(newnode);
 		}
@@ -87,7 +89,10 @@ public class MyLinkedList{
 		for(int i = 0; i < size() - 1; i++){
 			str = str + nthNode(i).getData() + ", ";
 		}
-		str = str + nthNode(size() - 1).getData() + "]";
+		if(size() > 0)
+			str = str + nthNode(size() - 1).getData() + "]";
+		else
+			str = "[]";
 		return str;
 	}
 }
