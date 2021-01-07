@@ -96,4 +96,16 @@ public class MyLinkedList{
 			str = "[]";
 		return str;
 	}
+
+	public String toStringReversed(){
+		String str = "[";
+		for(int i = 0; i < size() - 1; i++){
+			str = str + nthNode(size() - i - 1).getData() + ", ";
+		}
+		if(size() > 0)
+			str = str + nthNode(0).getData() + "]";
+		else
+			str = "[]";
+		return str;
+	}
 }
