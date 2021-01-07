@@ -5,6 +5,8 @@ public class MyLinkedList{
 
 	public MyLinkedList(){
 		size = 0;
+		head = null;
+		tail = null;
 	}
 
 	public int size(){
@@ -135,6 +137,20 @@ public class MyLinkedList{
 		size -= 1;
 		return oldvalue;
 	}
+
+	public void extend(MyLinkedList other){
+		Node nody = other.head;
+		Node nod = tail;
+		int newsize = size() + other.size();
+		nod.setNext(nody);
+		nody.setPrev(nod);
+		tail = other.tail;
+		size = newsize;
+		other.head = null;
+		other.tail = null;
+		other.size = 0;
+	}
+		
 				
 				
 }
