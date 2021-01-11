@@ -143,8 +143,10 @@ public class MyLinkedList{
 		Node nod = tail;
 		int newsize = size() + other.size();
 		nod.setNext(nody);
-		nody.setPrev(nod);
-		tail = other.tail;
+		if(other.size() > 0){
+			nody.setPrev(nod);
+			tail = other.tail;
+		}
 		size = newsize;
 		other.head = null;
 		other.tail = null;
